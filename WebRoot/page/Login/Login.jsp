@@ -17,7 +17,7 @@
 
 <body>
 	<div>
-		<form action="Login" name="Login" method="post">
+		<form action="Login.htm" name="Login" method="post">
 			<input type="hidden" id="mode" value="Login">
 
 			<div align="center" class="Title">Login</div>

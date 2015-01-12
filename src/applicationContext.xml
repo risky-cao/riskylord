@@ -32,14 +32,28 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl" value="dbc:oracle:thin:@localhost:1521:XE" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE" />
 		<property name="user" value="risky" />
 		<property name="password" value="risky" />
+		 <property name="minPoolSize" value="1"/>
+          <property name="maxPoolSize" value="20"/>
+          <property name="maxIdleTime" value="1800"/>
+          <property name="acquireIncrement" value="2"/>
+          <property name="maxStatements" value="0"/>
+          <property name="initialPoolSize" value="2"/>
+          <property name="idleConnectionTestPeriod" value="1800"/>
+          <property name="acquireRetryAttempts" value="30"/> 
+          <property name="breakAfterAcquireFailure" value="true"/>
+          <property name="testConnectionOnCheckout" value="false"/>
 	</bean>
 
 	<bean id="jdbc" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+	<bean id="baseDao" class="com.riskylord.base.dao.BaseDao" abstract="true">  
+        <property name="sqlMapClient" ref="sqlMapClient"/>  
+    </bean>  
 
 	<!-- memcache缓存池 -->
 	<bean id="memcachedPool" class="com.danga.MemCached.SockIOPool"

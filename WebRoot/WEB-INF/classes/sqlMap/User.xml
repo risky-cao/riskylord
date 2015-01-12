@@ -4,4 +4,7 @@
 "http://www.ibatis.com/dtd/sql-map-2.dtd">
 <sqlMap namespace="User">
 <typeAlias alias="user" type="com.riskylord.beans.User" />
+<select id="queryUser"  resultClass="user">
+        select * from users  
+    </select>
 </sqlMap>
